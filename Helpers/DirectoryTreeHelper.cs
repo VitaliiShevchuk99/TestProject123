@@ -15,8 +15,6 @@ namespace TestProj.Helpers
             folderStructure.FolderName = path.Name;
             foreach (var folder in path.GetDirectories())
             {
-                //SerializationTree.FolderStructure folderStructure = new SerializationTree.FolderStructure();
-
                 DirectoryInfo info = new DirectoryInfo(folder.FullName);
                 folderStructure.SubFolders.Add(CreateTree(info));
             }

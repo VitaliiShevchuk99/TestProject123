@@ -25,8 +25,7 @@ namespace TestProj
             {
                 string folderPath = op.SelectedPath;
                 DirectoryInfo info = new DirectoryInfo(folderPath);
-                var tree =  DirectoryTreeHelper.CreateTree(info);
-                SerializationHelper.SerializeFolder(tree, fileName);
+                SerializationHelper.SerializeFolder(DirectoryTreeHelper.CreateTree(info), fileName);
             }
         }
         private void btn_click2(object sender, RoutedEventArgs e)

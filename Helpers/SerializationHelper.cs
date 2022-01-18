@@ -20,7 +20,7 @@ namespace TestProj.Helpers
             }
         }
 
-         public static void DeserializeFolder(string filename, string pathToPlace)
+        public static void DeserializeFolder(string filename, string pathToPlace)
         {
             SerializationTree.FolderStructure folder;
             BinaryFormatter binaryFormatter = new BinaryFormatter();
