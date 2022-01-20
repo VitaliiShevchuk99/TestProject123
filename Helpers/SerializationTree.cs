@@ -7,21 +7,18 @@ using System.Threading.Tasks;
 
 namespace TestProj.Helpers
 {
-    class SerializationTree
+    [Serializable]
+    public class FolderStructure
     {
-        [Serializable]
-        public class FolderStructure
-        {
-            public string FolderName;
-            public List<FolderStructure> SubFolders = new List<FolderStructure>();
-            public List<FileStructure> Files = new List<FileStructure>();
-        }
+        public string FolderName;
+        public List<FolderStructure> SubFolders = new List<FolderStructure>();
+        public List<FileStructure> Files = new List<FileStructure>();
+    }
 
-        [Serializable]
-        public class FileStructure
-        {
-            public string FileName;
-            public byte[] Content;
-        }
+    [Serializable]
+    public class FileStructure
+    {
+        public string FileName;
+        public byte[] Content;
     }
 }

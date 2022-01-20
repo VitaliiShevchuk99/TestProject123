@@ -18,24 +18,22 @@ namespace TestProj
             InitializeComponent();
         }
 
-        private void btn_click(object sender, RoutedEventArgs e)
+        private void SerializeFolderButton(object sender, RoutedEventArgs e)
         {
-            var op = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-            if (op.ShowDialog() == true)
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            if (dialog.ShowDialog() == true)
             {
-                string folderPath = op.SelectedPath;
+                string folderPath = dialog.SelectedPath;
                 DirectoryInfo info = new DirectoryInfo(folderPath);
                 SerializationHelper.SerializeFolder(DirectoryTreeHelper.CreateTree(info), fileName);
             }
         }
-        private void btn_click2(object sender, RoutedEventArgs e)
+        private void DeserializeFolderButton(object sender, RoutedEventArgs e)
         {
-            var op = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
-            if (op.ShowDialog() == true)
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            if (dialog.ShowDialog() == true)
             {
-                string folderPath = op.SelectedPath;
-                DirectoryInfo info = new DirectoryInfo(folderPath);
-                SerializationHelper.DeserializeFolder(fileName,folderPath);
+                SerializationHelper.DeserializeFolder(fileName, dialog.SelectedPath);
             }
         }
     }

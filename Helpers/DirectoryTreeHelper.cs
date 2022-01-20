@@ -9,9 +9,9 @@ namespace TestProj.Helpers
 {
     static class DirectoryTreeHelper
     {
-        public static SerializationTree.FolderStructure CreateTree(DirectoryInfo path)
+        public static FolderStructure CreateTree(DirectoryInfo path)
         {
-            var folderStructure = new SerializationTree.FolderStructure();
+            var folderStructure = new FolderStructure();
             folderStructure.FolderName = path.Name;
             foreach (var folder in path.GetDirectories())
             {
@@ -19,13 +19,14 @@ namespace TestProj.Helpers
                 folderStructure.SubFolders.Add(CreateTree(info));
             }
 
-            foreach (var fileLeaf in path.GetFiles())
+            foreach (var file in path.GetFiles())
             {
-                SerializationTree.FileStructure fileStructure = new SerializationTree.FileStructure();
-                fileStructure.FileName = fileLeaf.Name;
-                fileStructure.Content = File.ReadAllBytes(fileLeaf.FullName);
+                FileStructure fileStructure = new FileStructure();
+                fileStructure.FileName = file.Name;
+                fileStructure.Content = File.ReadAllBytes(file.FullName);
                 folderStructure.Files.Add(fileStructure);
             }
+
             return folderStructure;
         }
     }

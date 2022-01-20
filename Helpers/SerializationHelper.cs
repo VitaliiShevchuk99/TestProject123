@@ -11,7 +11,7 @@ namespace TestProj.Helpers
 {
     static class SerializationHelper
     {
-        public static void SerializeFolder(SerializationTree.FolderStructure folder, string filename)
+        public static void SerializeFolder(FolderStructure folder, string filename)
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             using (Stream stream = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite))
@@ -22,26 +22,23 @@ namespace TestProj.Helpers
 
         public static void DeserializeFolder(string filename, string pathToPlace)
         {
-            SerializationTree.FolderStructure folder;
+            FolderStructure folder;
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
             {
-                folder = (SerializationTree.FolderStructure)binaryFormatter.Deserialize(stream);
-                //directoryInfo = new DirectoryInfo(folder.ToString());
+                folder = (FolderStructure)binaryFormatter.Deserialize(stream);
             }
             DirectoryInfo directoryToReplace = new DirectoryInfo(pathToPlace);
             ReplaceDeserializedFolder(folder, directoryToReplace);
         }
 
-        private static void ReplaceDeserializedFolder(SerializationTree.FolderStructure folder, DirectoryInfo directoryInfo)
+        private static void ReplaceDeserializedFolder(FolderStructure folder, DirectoryInfo directoryInfo)
         {
             foreach (var file in folder.Files)
             {
                 var filePath = Path.Combine(directoryInfo.FullName, file.FileName);
-                File.Create(filePath).Close();
+                using (File.Create(filePath)) { }
                 File.WriteAllBytes(filePath, file.Content);
-
-
             }
 
             foreach (var directory in folder.SubFolders)
