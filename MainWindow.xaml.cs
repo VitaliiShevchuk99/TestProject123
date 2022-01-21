@@ -12,7 +12,7 @@ namespace TestProj
     /// </summary>
     public partial class MainWindow : Window
     {
-        public const string fileName = "C:\\testProj\\testFile.dat";
+        public const string FileName = "C:\\testProj\\testFile.dat";
         public MainWindow()
         {
             InitializeComponent();
@@ -25,7 +25,7 @@ namespace TestProj
             {
                 string folderPath = dialog.SelectedPath;
                 DirectoryInfo info = new DirectoryInfo(folderPath);
-                SerializationHelper.SerializeFolder(DirectoryTreeHelper.CreateTree(info), fileName);
+                SerializationHelper.SerializeFolder(DirectoryTreeHelper.CreateTree(info), FileName);
             }
         }
         private void DeserializeFolderButton(object sender, RoutedEventArgs e)
@@ -33,7 +33,7 @@ namespace TestProj
             var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
             if (dialog.ShowDialog() == true)
             {
-                SerializationHelper.DeserializeFolder(fileName, dialog.SelectedPath);
+                SerializationHelper.DeserializeFolder(FileName, dialog.SelectedPath);
             }
         }
     }

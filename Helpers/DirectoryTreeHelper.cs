@@ -21,7 +21,7 @@ namespace TestProj.Helpers
 
             foreach (var file in path.GetFiles())
             {
-                FileStructure fileStructure = new FileStructure();
+                FileRepresentation fileStructure = new FileRepresentation();
                 fileStructure.FileName = file.Name;
                 fileStructure.Content = File.ReadAllBytes(file.FullName);
                 folderStructure.Files.Add(fileStructure);

@@ -12,11 +12,11 @@ namespace TestProj.Helpers
     {
         public string FolderName;
         public List<FolderStructure> SubFolders = new List<FolderStructure>();
-        public List<FileStructure> Files = new List<FileStructure>();
+        public List<FileRepresentation> Files = new List<FileRepresentation>();
     }
 
     [Serializable]
-    public class FileStructure
+    public class FileRepresentation
     {
         public string FileName;
         public byte[] Content;
